@@ -10,6 +10,7 @@ import UserLogin from './pages/UserPortal/UserLogin'
 import UserDashboard from './pages/UserPortal/Userdashboard';
 import BankRegister from './pages/Banks/CreateBank'
 import BankLogin from './pages/Banks/LoginBank'
+import BankPortal from './pages/BankPortal/index'
 const App = () => (
   <Router>
     <div style = {{padding:"5%"}}>
@@ -26,6 +27,7 @@ const App = () => (
         <Route path="/user-dashboard" element={<UserDashboard/>}/>
         <Route path="/create-bank" element={<BankRegister/>}/>
         <Route path="/login-bank" element={<BankLogin/>}/>
+        <Route path='/bank-portal' element={<BankPortal/>}/>
 
       </Routes>
     </div>

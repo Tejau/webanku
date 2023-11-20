@@ -11,7 +11,7 @@ const Home = () => (
           User Portal
         </Button>
       </Link>
-      <Link to="/create-bank-account">
+      <Link to="/bank-portal">
         <Button color="success">Bank Portal</Button>
       </Link>
     </div>

@@ -1,5 +1,3 @@
-// src/pages/UserLogin.js
-
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +7,7 @@ const UserLogin = () => {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [serverError, setServerError] = useState('');
 
   const navigate = useNavigate();
 
@@ -55,14 +54,16 @@ const UserLogin = () => {
           console.log(responseData);
 
           // Optionally, you can navigate to another page or perform other actions
-          let nav = `/user-dashboard?userid=${responseData?.userid}`
+          let nav = `/user-dashboard?userid=${responseData?.userid}`;
           navigate(nav);
         } else {
           // Handle login errors
-          console.error('Error logging in:', response.statusText);
+          const errorData = await response.json();
+          setServerError(errorData.message || 'Error logging in');
         }
       } catch (error) {
         console.error('Error:', error);
+        setServerError('Error logging in');
       }
     }
   };
@@ -70,6 +71,7 @@ const UserLogin = () => {
   return (
     <div>
       <h2>User Login</h2>
+      {serverError && <p style={{ color: 'red' }}>{serverError}</p>}
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label for="email">Email</Label>

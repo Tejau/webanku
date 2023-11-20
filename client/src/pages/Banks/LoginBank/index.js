@@ -8,6 +8,7 @@ const BankLogin = () => {
 
   const [nameError, setNameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [serverError, setServerError] = useState('');
 
   const navigate = useNavigate();
 
@@ -56,10 +57,12 @@ const BankLogin = () => {
           navigate(`/bank-details?bankId=${responseData?.bank?._id}`);
         } else {
           // Handle errors
-          console.error('Error logging in:', response.statusText);
+          const errorData = await response.json();
+          setServerError(errorData.message || 'Error logging in');
         }
       } catch (error) {
         console.error('Error:', error);
+        setServerError('Error logging in');
       }
     }
   };
@@ -67,6 +70,7 @@ const BankLogin = () => {
   return (
     <div>
       <h2>Bank Login</h2>
+      {serverError && <p style={{ color: 'red' }}>{serverError}</p>}
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label for="name">Name</Label>
