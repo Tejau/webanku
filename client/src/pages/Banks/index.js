@@ -93,7 +93,7 @@ const BankDetailsPage = () => {
       </div>
       <div>
       <h1>Bank Demographics</h1>
-
+      <h2>        Approved Loan Applicants demographics</h2>
       <Button onClick={getDemographics}>Get Demographics</Button>
 
       {demographics && (
