@@ -1,0 +1,29 @@
+version: '3.6'
+services:
+
+  expressserver:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: expressserver
+    volumes:
+      - ./:/usr/src/app # Mount the local project directory to the container
+    restart: "always"
+    networks: 
+      - api-layer
+    command: bash -c "node index.js 2>&1 | tee -a ./logs/output.log"  
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - expressserver
+    networks:
+      - api-layer
+
+networks:
+      api-layer: {}      
