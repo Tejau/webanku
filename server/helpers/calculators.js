@@ -6,16 +6,13 @@ function calculateDemographics(loans, ageRanges, salaryRanges) {
       const age = user.age;
       const salary = user.salary;
   
-      // Find the age range
       const ageRange = ageRanges.find((range) => {
         const [min, max] = range.split('-');
         return age >= min && age <= max;
       });
   
-      // Find the salary range
       const salaryRange = salaryRanges.find((range) => salary <= range);
   
-      // Update demographics
       if (ageRange && salaryRange) {
         if (!demographics[ageRange]) {
           demographics[ageRange] = {};

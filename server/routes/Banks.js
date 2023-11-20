@@ -4,7 +4,6 @@ const router = express.Router();
 const bankController = require('../controllers/Bank');
 const bankdetailsController = require('../controllers/Bank/BankDetails')
 const bankdemographicsController = require('../controllers/Bank/BankDemographics')
-// Route to create a new bank
 router.post('/create',bankController.createBank);
 router.post('/login', bankController.loginBank)
 router.get('/all',bankController.getAllBanks);

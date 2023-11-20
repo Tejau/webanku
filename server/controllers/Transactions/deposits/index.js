@@ -1,4 +1,3 @@
-// controllers/transactionController.js
 
 const { Transaction, BankAccount } = require('../../../models');
 
@@ -6,14 +5,12 @@ const deposit = async (req, res) => {
   try {
     const { id, amount } = req.body;
 
-    // Find the bank account based on the account number
     const bankAccount = await BankAccount.findById( id );
 
     if (!bankAccount) {
       return res.status(404).json({ message: 'Bank account not found' });
     }
 
-    // Update the balance and create a deposit transaction
     bankAccount.balance += amount;
 
     const depositTransaction = new Transaction({

@@ -1,4 +1,3 @@
-// src/components/UserAccountPage.js
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, FormFeedback, Container, Row, Col, Card, CardBody, CardTitle } from 'reactstrap'; // Import reactstrap components
@@ -74,7 +73,6 @@ const UserAccountPage = () => {
   const handleDeposit = async (e) => {
     e.preventDefault();
 
-    // Validate amount
     let isValid = true;
 
     if (!depositAmount.trim()) {
@@ -89,7 +87,6 @@ const UserAccountPage = () => {
 
     if (isValid) {
       try {
-        // Perform deposit logic (send request to server)
         const response = await fetch(`http://localhost:5000/transactions/deposit`, {
           method: 'POST',
           headers: {
@@ -116,7 +113,6 @@ const UserAccountPage = () => {
   const handleLoanApplication = async (e) => {
     e.preventDefault();
 
-    // Validate Loan amount
     let isValid = true;
 
     if (!loanAmount.trim()) {

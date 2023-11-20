@@ -1,4 +1,3 @@
-// src/components/DepositForm.js
 
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
@@ -10,7 +9,6 @@ const DepositForm = () => {
   const handleDeposit = async (e) => {
     e.preventDefault();
 
-    // Validate amount
     let isValid = true;
 
     if (!depositamount.trim()) {
@@ -24,9 +22,7 @@ const DepositForm = () => {
     }
 
     if (isValid) {
-      // Perform deposit logic (e.g., send request to server)
       console.log('Deposit:', depositamount);
-      // Reset form after successful deposit
       setAmountDeposited('');
     }
   };
