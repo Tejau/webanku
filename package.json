@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "amqplib": "^0.10.3",
     "react-router-dom": "^6.19.0"
   }
 }

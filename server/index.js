@@ -12,7 +12,7 @@ require('dotenv').config();
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: ['http://example.com', 'http://localhost:3000'], 
+  origin: ['http://example.com', 'http://localhost:3001', 'http://localhost:3000', 'http://192.168.0.9:3000'], 
   methods: 'GET,POST',
   credentials: true, 
 }));
