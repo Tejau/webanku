@@ -52,6 +52,7 @@ const UserLogin = () => {
           // Login successful
           const responseData = await response.json();
           console.log(responseData);
+          localStorage.setItem('token', responseData?.token)
 
           // Optionally, you can navigate to another page or perform other actions
           let nav = `/user-dashboard?userid=${responseData?.userid}`;

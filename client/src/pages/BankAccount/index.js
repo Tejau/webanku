@@ -48,6 +48,7 @@ const UserAccountPage = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ token
           },
           body: JSON.stringify({ amount: withdrawamount, id: accountId }),
         });
@@ -55,10 +56,8 @@ const UserAccountPage = () => {
         if (response.ok) {
           // Reset form after successful withdrawal
           const data = await response.json();
-
-          setaccountBalance(data?.newBalance)
+          setaccountBalance(data?.newbalance)    
           setwithdrawAmount('');
-          
         } else {
           console.error('Error in withdrawal:', response.statusText);
         }
@@ -242,13 +241,18 @@ const UserAccountPage = () => {
       console.error('Error:', error);
     }
   };
-
-  useEffect(() => {
-   
-    fetchAccountDetails();
-    // fetchLoanDetails();
-    fetchLoans();
-  }, [accountId]);
+  const [token, setToken] = useState('')
+  useEffect( () => {
+    const fetchData = async () => {
+      const tok = await localStorage.getItem('token');
+      setToken(tok)
+      fetchAccountDetails();
+      // fetchLoanDetails();
+      fetchLoans();
+    };
+  
+    fetchData();
+  }, [accountId, setToken]);
 
   return (
     <Container>
