@@ -1,7 +1,7 @@
 version: '3.6'
 services:
 
-  expressserver:
+  api-layer:
     build:
       context: ./server
       dockerfile: Dockerfile
@@ -15,6 +15,20 @@ services:
     ports:
       - "5000:5000" 
 
+  withdrawlservice:
+    build:
+      context: ./withdrawlservice
+      dockerfile: Dockerfile
+    container_name: expressserver
+    volumes:
+      - ./:/usr/src/app # Mount the local project directory to the container
+    restart: "always"
+    networks: 
+      - api-layer
+    command: bash -c "node index.js" 
+    ports:
+      - "5000:5000"     
+      
   nginx:
     image: nginx:latest
     container_name: nginx
