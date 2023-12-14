@@ -148,6 +148,8 @@ const CreateUser = () => {
         if (response.ok) {
           // User created successfully
           const responseData = await response.json();
+          localStorage.setItem('token', responseData?.token)
+
           console.log(responseData?.userid);
           navigate(`/user-dashboard?userid=${responseData?.userid}`);
         } else {

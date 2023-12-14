@@ -12,6 +12,7 @@ const authenticateUser = (req, res, next) => {
 
   // Verify the token
   jwt.verify(token, JWT_SECRET, async (err, decoded) => {
+    
     if (err) {
       return res.status(401).json({ message: 'Unauthorized: Invalid token' });
     }
@@ -19,9 +20,16 @@ const authenticateUser = (req, res, next) => {
     // Check if the user exists in the database
     try {
       const user = await User.findById(decoded.userId);
-
+      console.log("jwt decoded is,", decoded)
       if (!user) {
         return res.status(401).json({ message: 'Unauthorized: User not found' });
+      }
+
+      // Check if the user has the role 'user'
+      
+      if (decoded.role !== 'user') {
+        console.log('user role is', user.role)
+        return res.status(403).json({ message: 'Forbidden: User does not have the required role' });
       }
 
       // Attach the user information to the request for further processing

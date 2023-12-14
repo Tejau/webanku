@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const loanPaybackSchema = new mongoose.Schema({
-  amount: { type: Number, required: true },
+  amount: { type: Number, required: true, default: 0.0 },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   loan: { type: mongoose.Schema.Types.ObjectId, ref: 'Loan' },
   status: { type: String, enum: ['pending', 'completed'], default: 'pending' },

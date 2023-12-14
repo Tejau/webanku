@@ -22,8 +22,9 @@ const createUser = async (req, res) => {
     });
 
     await newUser.save();
+    const token = generateAuthToken(newUser._id, 'user'); // You can pass more user information as needed
 
-    res.status(201).json({ message: 'User created successfully', user: newUser, userid: newUser._id });
+    res.status(201).json({ message: 'User created successfully', user: newUser, userid: newUser._id, token:token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
@@ -50,7 +51,8 @@ const loginUser = async (req, res) => {
     const token = generateAuthToken(user._id, 'user'); // You can pass more user information as needed
 
     res.status(200).json({ message: 'Login successful', user: user, userid: user._id, token });
-  } catch (error) {
+  } 
+  catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }

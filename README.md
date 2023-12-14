@@ -9,6 +9,11 @@ commands to run:
 
 client: cd client && npm i && npm run start
 
-server: cd server && npm i && node index.js
+server: cd api-layer && npm i && node index.js
 
 database: you can setup on premise or cloud db both but the db should be of mongoDB
+
+queue service: docker-compose -f ./docker-compose.rabbitmq.yaml up -d
+
+withdrawl-microservice: cd withdrawlservice && npm i && npm run start
+
