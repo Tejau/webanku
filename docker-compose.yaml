@@ -27,7 +27,7 @@ services:
       - api-layer
     command: bash -c "node index.js" 
     ports:
-      - "5000:5000"     
+      - "8000:8000"     
       
   nginx:
     image: nginx:latest
